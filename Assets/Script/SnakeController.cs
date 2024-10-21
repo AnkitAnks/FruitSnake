@@ -35,7 +35,7 @@ public class SnakeController : MonoBehaviour
         hInput = joystick.Horizontal;
         vInput = joystick.Vertical;
         
-        transform.Rotate(transform.up * hInput * moveSpeed * steerSpeed * Time.deltaTime);
+        transform.Rotate(transform.up * hInput * steerSpeed * Time.deltaTime);
 
         //store position history
         positionHistory.Insert(0, transform.position);

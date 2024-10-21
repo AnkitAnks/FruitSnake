@@ -20,7 +20,7 @@ public class SnakeCollisionController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Body")
         {
-            if(snakeController.bodyParts.Count > 5)
+            if(snakeController.bodyParts.Count >= 3)
             {
                 SceneManager.LoadScene("LoaderScreen");
             }
