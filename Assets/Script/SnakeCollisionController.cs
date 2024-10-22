@@ -29,9 +29,6 @@ public class SnakeCollisionController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             snakeController.GrowSnake();
-            float timeToAdd = Time.deltaTime;
-            snakeController.bodySpeed += timeToAdd;
-            snakeController.moveSpeed += timeToAdd;
             
         }
     }
