@@ -5,11 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class SnakeCollisionController : MonoBehaviour
 {
+    // Reference to SnakeController
     public SnakeController snakeController;
+
+    public Score score;
 
     private void Awake()
     {
         snakeController.GetComponent<SnakeController>();
+        score = gameObject.GetComponent<Score>();  
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -29,6 +33,7 @@ public class SnakeCollisionController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             snakeController.GrowSnake();
+            score.UpdateScore();
             
         }
     }

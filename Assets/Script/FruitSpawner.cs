@@ -25,7 +25,7 @@ public class FruitSpawner : MonoBehaviour
 
             Instantiate(fruit, pos, Quaternion.identity);
 
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(8);
         }
         
     }
