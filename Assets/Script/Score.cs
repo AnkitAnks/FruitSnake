@@ -5,12 +5,17 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+    // Reference to score text.
     public TMP_Text scoreText;
 
+    // Reference to Highscore text.
     public TMP_Text highScoreText;
 
-    int currentScore;
-    int highScore;
+    // Reference to your score text on end screen
+    public TMP_Text yourScoreText;
+
+    public int currentScore;
+    public int highScore;
 
 
     // Start is called before the first frame update
@@ -28,15 +33,15 @@ public class Score : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + currentScore.ToString();
-
+        
         // Update high score if current score exceeds it
         if (currentScore > highScore)
         {
-            highScore = currentScore;
-            highScoreText.text = "HighScore: " + highScore.ToString();
+            //highScore = currentScore;
+            highScoreText.text = "HighScore: " + currentScore.ToString();
 
             // Save the new high score in PlayerPrefs
-            PlayerPrefs.SetInt("highScore", highScore);
+            PlayerPrefs.SetInt("highScore", currentScore);
             PlayerPrefs.Save();
         }
     }
@@ -44,5 +49,20 @@ public class Score : MonoBehaviour
     public void UpdateScore()
     {
         currentScore++;
+    }
+
+    public void SetScore()
+    {
+        if(currentScore > highScore)
+        {
+            //Display the score on end screen.
+            yourScoreText.text = "NewHighScore: " + currentScore.ToString();
+        }
+        else
+        {
+            //Display the score on end screen.
+            yourScoreText.text = "YourScore: " + currentScore.ToString();
+        }
+
     }
 }

@@ -10,6 +10,8 @@ public class SnakeCollisionController : MonoBehaviour
 
     public Score score;
 
+    public GameObject endScreen;
+
     private void Awake()
     {
         snakeController.GetComponent<SnakeController>();
@@ -20,13 +22,15 @@ public class SnakeCollisionController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Wall")
         {
-            SceneManager.LoadScene("LoaderScreen");
+            StartCoroutine("EndScreenManager");
+            //SceneManager.LoadScene("LoaderScreen");
         }
         else if (collision.gameObject.tag == "Body")
         {
-            if(snakeController.bodyParts.Count >= 3)
+            if(snakeController.bodyParts.Count > 3)
             {
-                SceneManager.LoadScene("LoaderScreen");
+                StartCoroutine("EndScreenManager");
+                //SceneManager.LoadScene("LoaderScreen");
             }
         }
         else if (collision.gameObject.tag == "Fruit")
@@ -36,5 +40,16 @@ public class SnakeCollisionController : MonoBehaviour
             score.UpdateScore();
             
         }
+    }
+
+    IEnumerator EndScreenManager()
+    {
+        snakeController.moveSpeed = 0;
+        snakeController.bodySpeed = 0;
+        score.SetScore();
+        endScreen.SetActive(true);
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("LoaderScreen");
+        yield return null;
     }
 }
